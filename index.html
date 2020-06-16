@@ -1,0 +1,485 @@
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>DiRS</title>
+	<!-- <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" type="text/css" href="css/mystyle.css"> -->
+	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="bootstrap/js/bootstrap.min.js">
+</head>
+
+<body>
+	<div class="container">
+		<div class="content">
+			<h1 style="text-align:center; margin-top:60px; font-weight: bold">
+				DiRS: On Creating Benchmark Datasets for Remote <br> Sensing Image Interpretation
+			</h1>
+			<p style="text-align:center; margin-bottom:15px; margin-top:20px; font-size: 18px">
+				<a href="http://www.captain-whu.com/longyang_En.html" target="_blank">Yang Long<sup>1</sup></a>,
+				<a href="http://www.captain-whu.com/xia_En.html" target="_blank">Gui-Song Xia<sup>1,2,*</sup></a>,
+				<a href="http://people.ucas.ac.cn/~shyli" target="_blank">Shengyang Li<sup>3</sup></a>,
+				<a href="http://www.captain-whu.com/yangwen.html" target="_blank">Wen Yang<sup>1,4</sup></a>, <br>
+				<a href="https://sites.google.com/site/michaelyingyang/home" target="_blank">Michael Ying Yang<sup>5</sup></a>,
+				<a href="https://www.sipeo.bgu.tum.de/team/zhu" target="_blank">Xiao Xiang Zhu<sup>6</sup></a>,
+				<a href="http://www.lmars.whu.edu.cn/prof_web/zhangliangpei/rs/index.html" target="_blank">Liangpei Zhang<sup>1</sup></a>,
+				<a href="http://www.lmars.whu.edu.cn/prof_web/prof_lideren/ldryinwenjl.htm" target="_blank">Deren Li<sup>1</sup></a>.
+			</p>
+			<p style="text-align:center; margin-bottom:15px; margin-top:20px; font-size: 15px;font-style: italic;">
+				1. State Key Lab. LIESMARS, Wuhan University, Wuhan 430079, China <br>
+				2. School of Computer Science, Wuhan University, Wuhan 430079, China <br>
+				3. Key Laboratory of Space Utilization, Technology and Engineering Center for Space Utilization, Chinese Academy of Sciences, Beijing 100094, China <br>
+				4. School of Electronic Information, Wuhan University, Wuhan 430072, China <br>
+				5. Faculty of Geo-Information Science and Earth Observation, University of Twente, Hengelosestraat 99, Enschede, Netherlands <br>
+				6. German Aerospace Center (DLR) and also Technical University of Munich, Germany
+			</p>
+
+		</div>
+
+		<!-- <br><hr> -->
+
+		<div class="row">
+			<div class="span6 offset2">
+				<ul class="nav nav-tabs">
+					<br />
+				</ul>
+			</div>
+		</div>
+
+		<table style= "width:100%;" align="center">
+			<tr>
+				<td style="text-align: center;"><a href="#DiRS" ><img src="files/DiRS-Head.png" class="img-responsive center-block"/> <br> DiRS</a></td>
+				&nbsp;&nbsp;
+				<td style="text-align: center;"><a href="#Million-AID" ><img src="files/Million-AID-Head.png" class="img-responsive center-block" /> <br> Million-AID</a></td>
+				&nbsp;&nbsp;
+				<td style="text-align: center;"><a href="files/Paper.pdf" target="_blank"><img src="files/Paper-Head.png" class="img-responsive center-block" /> <br> Paper</a></td>
+				&nbsp;&nbsp;
+				<td style="text-align: center;"><a href="files/PPT.pdf" target="_blank" ><img src="files/PPT-Head.png" class="img-responsive center-block" /> <br> PPT</a></td>
+			</tr>
+		 </table>
+
+		<div class="row">
+			<div class="span12">
+				<h3 style="text-align:left; margin-bottom:10px; margin-top:20px; font-weight: bold">
+					1. Abstract
+				</h3>
+				<p style="text-align:justify; font-size: 17px">
+					The past decade has witnessed the great progress on remote sensing (RS) image interpretation and
+					its wide applications. With RS images becoming more accessible than ever before, there is an
+					increasing demand for the automatic interpretation of these images, where benchmark datasets are
+					essential prerequisites for developing and testing intelligent interpretation algorithms. After
+					reviewing existing benchmark datasets in the research community of RS image interpretation, this
+					article discusses the problem of how to efficiently prepare a suitable benchmark dataset for RS
+					image analysis. Specifically, we first analyze the current challenges of developing intelligent
+					algorithms for RS image interpretation with bibliometric investigations. We then present some
+					principles, <i>i.e.</i>, <i><strong>di</strong>versity</i>, <i><strong>r</strong>ichness</i>,
+					and <i><strong>s</strong>calability</i> (called <a href="#DiRS"><strong>DiRS</strong></a>), on 
+					constructing benchmark datasets in efficient manners. Following the DiRS principles, we also 
+					provide an example on building datasets for RS image classification, <i>i.e.</i>, 
+					<a href="#Million-AID"><strong>Million-AID</strong></a>, a new large-scale benchmark dataset 
+					containing million instances for RS scene classification. Several challenges and perspectives in 
+					RS image annotation are finally discussed to facilitate the research in benchmark dataset construction. 
+					We do hope this paper will provide RS community an overall perspective on constructing large-scale 
+					and practical image datasets for further research, especially data-driven ones.
+				</p>
+			</div>
+		</div>
+
+		<br>
+		<div class="row">
+			<div class="span12">
+				<h3 style="text-align:left; margin-bottom:10px; margin-top:20px; font-weight: bold">
+					2. Annotated Datasets for RS Image Interpretation
+				</h3>
+				<p style="text-align:justify; font-size: 17px">
+					The interpretation of RS images has been playing an increasingly important role in a large
+					diversity of applications, and thus, has attracted remarkable research attentions. Consequently,
+					various datasets have been built to advance the development of interpretation algorithms for RS
+					images. Covering literature published over the past decade, we perform a systematic review of
+					the existing RS image datasets concerning the current mainstream of RS image interpretation tasks,
+					including scene classification, object detection, semantic segmentation and change detection.
+				</p>
+
+				<!-- <h4 style="text-align:left; margin-bottom:10px; margin-top:10px; font-weight: bold; font-style: italic">
+					- Tag Cloud of RS Image Interpretation
+				</h4>
+				<img src="files/TagCloud.png" width="500" class="img-responsive center-block" /> -->
+				<h4 style="text-align:left; margin-bottom:10px; margin-top:10px; font-weight: bold; font-style: italic">
+					- Scene Classification
+				</h4>
+				<!-- <p style="text-align:justify; font-size: 17px">
+						Comparison among different RS scene classification datasets：
+					</p> -->
+				<table class="table .table-condensed"
+					style="border-top: solid 1px rgb(90, 90, 90); border-bottom: solid 1px rgb(90, 90, 90); font-family: Times; font-size: small; width: 75%;"
+					align="center" frame="hsides">
+					<caption style="color:black; text-align: center;font-size: 17px;">
+						Comparison among different RS image scene classification datasets
+					</caption>
+					<thead>
+						<tr style="border-bottom: solid 1px rgb(120, 120, 120);">
+							<th style="text-align: left;">Dataset</th>
+							<th style="text-align: center;">#Cat.</th>
+							<th style="text-align: center;">#Images per cat.</th>
+							<th style="text-align: center;">#Images</th>
+							<th style="text-align: center;">Resolution (m)</th>
+							<th style="text-align: center;">Image size</th>
+							<th style="text-align: center;">Year</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr style="border-top: solid 1px white">
+							<td style="text-align: left;"> 
+								<a href="http://weegee.vision.ucmerced.edu/datasets/landuse.html" target="_blank">UC-Merced</a> <br> 
+								<a href="http://www.captain-whu.com/repository.html" target="_blank"> WHU-RS19 </a> <br> 
+								<a href="https://docs.google.com/viewer?a=v&pid=sites&srcid=ZGVmYXVsdGRvbWFpbnxxaW56b3VjbnxneDo1MDYzYWMxOWIwMjRiMWFi" target="_blank"> RSSCN7 </a> <br> 
+								<a href="http://csc.lsu.edu/~saikat/deepsat/" target="_blank"> SAT-4 </a> <br> 
+								<a href="http://csc.lsu.edu/~saikat/deepsat/" target="_blank"> SAT-6 </a> <br> 
+								<a href="http://patreo.dcc.ufmg.br/2017/11/12/brazilian-coffee-scenes-dataset" target="_blank"> BCS </a> <br>
+								<a href="https://pan.baidu.com/s/1mhagndY" target="_blank"> RSC11 </a> <br> 
+								<a href="http://www.lmars.whu.edu.cn/prof_web/zhongyanfei/Num/Google.html" target="_blank">SIRI-WHU <br> 
+								<a href="http://www.escience.cn/people/JunweiHan/NWPU-RESISC45.html" target="_blank"> NWPU-RESISC45 </a> <br>
+								<a href="http://www.captain-whu.com/project/AID" target="_blank"> AID </a> <br>
+								<a href="https://github.com/lehaifeng/RSI-CB" target="_blank"> RSI-CB128 </a> <br>
+								<a href="https://github.com/lehaifeng/RSI-CB" target="_blank"> RSI-CB256 </a> <br>
+								<a href="https://github.com/RSIA-LIESMARS-WHU/RSD46-WHU" target="_blank"> RSD46-WHU </a> <br>
+								<a href="https://github.com/phelber/eurosat" target="_blank"> EuroSAT</a> <br> 
+								<a href="https://sites.google.com/view/zhouwx/dataset" target="_blank"> PatternNet </a>
+							</td>
+							<td style="text-align: center;">21 <br> 19 <br> 7 <br> 4 <br> 6 <br> 2 <br> 11 <br> 12 <br>
+								45 <br> 30 <br> 45 <br> 35 <br> 46 <br> 10 <br> 38</td>
+							<td style="text-align: center;">100 <br> 50 to 61 <br> 400 <br> 89,963 to 178,034 <br>
+								10,262 to 150,400 <br> 1,438 <br> ~100 <br> 200 <br> 700 <br> 220 to 420 <br> 173 to
+								1,550 <br> 198 to 1,331 <br> 500 to 3,000 <br> 2,000 to 3,000 <br> 800</td>
+							<td style="text-align: center;">2,100 <br> 1,013 <br> 2,800 <br> 500,000 <br> 405,000 <br>
+								2,876 <br> 1,232 <br> 2,400 <br> 31,500 <br> 10,000 <br> 36,000 <br> 24,000 <br> 117,000
+								<br> 27,000 <br> 30,400</td>
+							<td style="text-align: center;">0.3 <br> up to 0.5 <br> -- <br> 1 to 6 <br> 1 to 6 <br> --
+								<br> ~0.2 <br> 2 <br> 0.2 to 30 <br> 0.5 to 8 <br> 0.3 to 3 <br> 0.3 to 3 <br> 0.5 to 2
+								<br> 10 <br> 0.06 to 4.7</td>
+							<td style="text-align: center;">256&times;256 <br> 600&times;600 <br> 400&times;400 <br>
+								28&times;28 <br> 28&times;28 <br> 600&times;600 <br> 512&times;512 <br> 200&times;200
+								<br> 256&times;256 <br> 600&times;600 <br> 128&times;128 <br> 256&times;256 <br>
+								256&times;256 <br> 64&times;64 <br> 256&times;256</td>
+							<td style="text-align: center;">2010 <br> 2012 <br> 2015 <br> 2015 <br> 2015 <br> 2015 <br>
+								2016 <br> 2016 <br> 2016 <br> 2017 <br> 2017 <br> 2017 <br> 2017 <br> 2018 <br> 2018
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<!-- <img src="files/SC.png" width="850" class="img-responsive center-block" /> -->
+
+				<h4 style="text-align:left; margin-bottom:10px; margin-top:10px; font-weight: bold; font-style: italic">
+					- Object Dectection
+				</h4>
+				<table class="table .table-condensed"
+					style="border-top: solid 1px rgb(90, 90, 90); border-bottom: solid 1px rgb(90, 90, 90); font-family: Times; font-size: small; width: 75%;"
+					align="center" frame="hsides">
+					<caption style="color:black; text-align: center;font-size: 17px;">
+						Comparison among different RS image object detection datasets
+					</caption>
+					<thead>
+						<tr style="border-bottom: solid 1px rgb(120, 120, 120);">
+							<th style="text-align: left;">Dataset</th>
+							<th style="text-align: center;">#Annot.</th>
+							<th style="text-align: center;">#Cat.</th>
+							<th style="text-align: center;">#Instances</th>
+							<th style="text-align: center;">#Images</th>
+							<th style="text-align: center;">Image width</th>
+							<th style="text-align: center;">Year</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr style="border-top: solid 1px white">
+							<td style="text-align: left;">
+								<!-- <a href="https://ai.stanford.edu/users/koller/Papers/Heitz+Koller:ECCV08.pdf" target="_blank"> TAS </a> <br> -->
+								<a> TAS </a> <br>
+                                <a href="http://web.eee.sztaki.hu/remotesensing/building_benchmark.html" target="_blank"> SZTAKI-INRIA </a> <br>
+								<a href="http://www.escience.cn/people/gongcheng/NWPU-VHR-10.html"> NWPU-VHR10 </a> <br>
+								<a href="https://www.dlr.de/eoc/en/desktopdefault.aspx/tabid-12760/22294_read-52777" target="_blank"> DLR3k </a> <br>
+								<!-- <a href="https://ucassdl.cn/downloads/publication/ICIP2015_ZhuHaigang.pdf" target="_blank"> UCAS-AOD </a> <br> -->
+								<a> UCAS-AOD </a> <br>
+								<a href="https://downloads.greyc.fr/vedai" target="_blank"> VEDAI </a> <br> 
+								<a href="https://gdo152.llnl.gov/cowc" target="_blank">COWC</a> <br> 
+								<a href="http://www.escience.cn/people/liuzikun/DataSet.html" target="_blank"> HRSC2016 </a> <br> 
+								<a href="https://github.com/RSIA-LIESMARS-WHU/RSOD-Dataset-" target="_blank"> RSOD </a> <br>
+								<a href="https://lafi.github.io/LPN" target="_blank"> CARPPK </a> <br>
+								<a href="https://pan.baidu.com/s/1geTwAVD" target="_blank">LEVIR</a> <br> 
+								<a href="https://github.com/VisDrone/VisDrone-Dataset" target="_blank">VisDrone</a> <br>
+								<a href="http://xviewdataset.org/#dataset" target="_blank">xView</a> <br> 
+								<a href="https://captain-whu.github.io/DOTA" target="_blank">DOTA-v1.0</a> <br> 
+								<a href="https://gitee.com/cofferlait/TGRS-HRRSD-Dataset" target="_blank">HRRSD</a> <br> 
+								<a href="http://www.escience.cn/people/gongcheng/DIOR.html" target="_blank">DIOR</a> <br>
+								<a href="https://captain-whu.github.io/DOTA" target="_blank">DOTA-v1.5</a> <br> 
+								<a href="https://captain-whu.github.io/DOTA" target="_blank">DOTA-v2.0</a>
+							</td>
+							<td style="text-align: center;">HBB <br> OBB <br> HBB <br> OBB <br> OBB <br> OBB <br> CP
+								<br> OBB <br> HBB <br> HBB <br> HBB <br> HBB <br> HBB <br> OBB <br> HBB <br> HBB <br> OBB <br> OBB</td>
+							<td style="text-align: center;">1 <br> 1 <br> 10 <br> 2 <br> 2 <br> 9 <br> 1 <br> 26 <br> 4
+								<br> 1 <br> 3 <br> 10 <br> 60 <br> 15 <br> 13 <br> 20 <br> 16 <br> 18</td>
+							<td style="text-align: center;">1,319 <br> 665 <br> 3,651 <br> 14,235 <br> 14,596 <br> 3,640
+								<br> 32,716 <br> 2,976 <br> 6,950 <br> 89,777 <br> 11,000 <br> 54,200 <br> 1,000,000
+								<br> 188,282 <br> 55,740 <br> 192,472 <br> 402, 089 <br> 1,488,666 </td>
+							<td style="text-align: center;">30 <br> 9 <br> 800 <br> 20 <br> 1,510 <br> 1,210 <br> 53
+								<br> 1,061 <br> 976 <br> 1,448 <br> 22,000 <br> 10,209 <br> 1,413 <br> 2,806 <br> 21,761
+								<br> 23,463 <br> 2,806 <br> 11,067 </td>
+							<td style="text-align: center;">792 <br> ~800 <br> ~1,000 <br> 5,616 <br> ~1,000 <br>
+								512/1,024 <br> 2,000--19,000 <br> ~1,100 <br> ~1,000 <br> 1,280 <br> 800 <br> 2,000
+								<br> ~3,000 <br> 800--4,000 <br> 152--10,569 <br> 800 <br> 800--13,000 <br> 800--20,000 </td>
+							<td style="text-align: center;">2008 <br> 2012 <br> 2014 <br> 2015 <br> 2015 <br> 2016 <br>
+								2016 <br> 2016 <br> 2017 <br> 2017 <br> 2018 <br> 2018 <br> 2018 <br> 2018 <br> 2019
+								<br> 2019 <br> 2019 <br> 2020</td>
+						</tr>
+					</tbody>
+				</table>
+				<!-- <img src="files/OD.png" width="850" class="img-responsive center-block" /> -->
+
+				<h4 style="text-align:left; margin-bottom:10px; margin-top:10px; font-weight: bold; font-style: italic">
+					- Semantic Segmentation
+				</h4>
+				<table class="table .table-condensed"
+					style="border-top: solid 1px rgb(90, 90, 90); border-bottom: solid 1px rgb(90, 90, 90); font-family: Times; font-size: small; width: 75%;"
+					align="center" frame="hsides">
+					<caption style="color:black; text-align: center;font-size: 17px;">
+						Comparison among different RS image semantic segmentation datasets
+					</caption>
+					<thead>
+						<tr style="border-bottom: solid 1px rgb(120, 120, 120);">
+							<th style="text-align: left;">Dataset</th>
+							<th style="text-align: center;">#Cat.</th>
+							<th style="text-align: center;">#Images.</th>
+							<th style="text-align: center;">Resolution (m)</th>
+							<th style="text-align: center;">#Bands</th>
+							<th style="text-align: center;">Image size</th>
+							<th style="text-align: center;">Year</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr style="border-top: solid 1px white">
+							<td style="text-align: left;">
+							    <a href="http://www.ehu.eus/ccwintco/index.php/Hyperspectral_Remote_Sensing_Scenes#Kennedy_Space_Center_.28KSC.29" target="_blank">Kenney Space Center</a><br> 
+								<a href="http://www.ehu.eus/ccwintco/index.php/Hyperspectral_Remote_Sensing_Scenes#Botswana" target="_blank">Botswana</a> <br> 
+								<a href="http://www.ehu.eus/ccwintco/index.php/Hyperspectral_Remote_Sensing_Scenes#Salinas" target="_blank">Salinas </a><br> 
+								<a href="http://www.ehu.eus/ccwintco/index.php/Hyperspectral_Remote_Sensing_Scenes#Pavia_University_scene" target="_blank">University of Pavia </a><br> 
+								<a href="http://www.ehu.eus/ccwintco/index.php/Hyperspectral_Remote_Sensing_Scenes#Pavia_Centre_scene" target="_blank">Pavia Centre </a><br> 
+								<a href="http://www2.isprs.org/commissions/comm3/wg4/2d-sem-label-vaihingen.html" target="_blank">ISPRS Vaihingen </a><br> 
+								<a href="http://www2.isprs.org/commissions/comm3/wg4/2d-sem-label-potsdam.html" target="_blank">ISPRS Potsdam </a><br> 
+								<a href="https://www.cs.toronto.edu/~vmnih/data/" target="_blank">Massachusetts Buildings </a><br> 
+								<a href="https://www.cs.toronto.edu/~vmnih/data/" target="_blank">Massachusetts Roads </a><br> 
+								<a href="https://purr.purdue.edu/publications/1947/1" target="_blank">Indian Pines </a><br> 
+								<a href="https://sites.google.com/site/michelevolpiresearch/data/zurich-dataset" target="_blank">Zurich Summer </a><br> 
+								<a href="https://project.inria.fr/aerialimagelabeling/" target="_blank">Inria Dataset </a><br> 
+								<a href="http://earthvisionlab.whu.edu.cn/zm/SemanticSegmentation/index.html" target="_blank">EVlab-SS </a><br> 
+								<a href="https://github.com/rmkemker/RIT-18" target="_blank">RIT-18 </a><br> 
+								<a href="https://study.rsgis.whu.edu.cn/pages/download/building_dataset.html" target="_blank">WHU Building-Aerial Imagery </a><br> 
+								<a href="https://study.rsgis.whu.edu.cn/pages/download/building_dataset.html" target="_blank">WHU Building-Satellite Imagery I </a><br> 
+								<a href="https://study.rsgis.whu.edu.cn/pages/download/building_dataset.html" target="_blank">WHU Building-Satellite Imagery II </a><br> 
+								<a href="https://mediatum.ub.tum.de/1454690" target="_blank">So2Sat LC242 </a><br>
+								<a href="https://mediatum.ub.tum.de/1474000" target="_blank">SEN12MS </a><br> 
+								<a href="https://www.uavid.nl" target="_blank">UAVid </a><br> 
+								<a href="https://x-ytong.github.io/project/GID.html" target="_blank">GID </a>
+							</td>
+							<td style="text-align: center;">13 <br> 14 <br> 16 <br> 9 <br> 9 <br> 6 <br> 6 <br> 2 <br> 2
+								<br> 16 <br> 8 <br> 2 <br> 10 <br> 18 <br> 2 <br> 2 <br> 2 <br> 17 <br> 33 <br> 8 <br>
+								15 </td>
+							<td style="text-align: center;">1 <br> 1 <br> 1 <br> 1 <br> 1 <br> 33 <br> 38 <br> 151 <br>
+								1,171 <br> 1 <br> 20 <br> 360 <br> 60 <br> 3 <br> 8,189 <br> 204 <br> 17,388 <br>
+								400,673 <br>180,662 triplets <br>420 <br>150</td>
+							<td style="text-align: center;">18 <br> 30 <br> 3.7 <br> 1.3 <br> 1.3 <br> 0.09 <br> 0.05
+								<br> 1 <br> 1 <br> 20 <br> 0.62 <br> 0.3 <br> 0.1 to 2 <br> 0.047 <br> 0.3 <br> 0.3 to
+								2.5 <br> 2.7 <br> 10 <br> 10 to 50 <br> -- <br> 0.8 to 10</td>
+							<td style="text-align: center;">224 bands <br> 242 bands <br> 224 bands <br> 115 bands <br>
+								115 bands <br> IR, R, G, DSM, nDSM <br> IR, RGB, DSM, nDSM <br> RGB <br> RGB <br> 224
+								bands <br> NIR, RGB <br> RGB <br> RGB <br> 6 bands <br> RGB <br> RGB <br> RGB <br> 10
+								bands <br> up to 13 bands <br> RGB <br> 4 bands</BR></td>
+							<td style="text-align: center;">512&times;614 <br> 1,476&times;256 <br> 512&times;217 <br>
+								610&times;340 <br> 1,096&times;492 <br> ~2,500&times;2500 <br> 6,000&times;6,000 <br>
+								1,500&times;1,500 <br> 1,500&times;1,500 <br> 145&times;145 <br> 1,000&times;1,150 <br>
+								1,500&times;1,500 <br> 4,500&times;4,500 <br> 9,000&times;6,000 <br> 512&times;512 <br>
+								512&times;512 <br> 512&times;512 <br> 32&times;32 <br> 256&times;256
+								<br>~4,000&times;2,160 <br>6,800&times;7,200</td>
+							<td style="text-align: center;">2005 <br> 2005 <br> -- <br> -- <br> -- <br> 2012 <br> 2012
+								<br> 2013 <br> 2013 <br> 2015 <br> 2015 <br> 2017 <br> 2017 <br> 2017 <br> 2019 <br>
+								2019 <br> 2019 <br> 2019 <br> 2019 <br> 2020 <br> 2020</td>
+						</tr>
+					</tbody>
+				</table>
+				<!-- <img src="files/SS.png" width="850" class="img-responsive center-block" /> -->
+
+				<h4 style="text-align:left; margin-bottom:10px; margin-top:10px; font-weight: bold; font-style: italic">
+					- Change Dectection
+				</h4>
+				<table class="table .table-condensed"
+					style="border-top: solid 1px rgb(90, 90, 90); border-bottom: solid 1px rgb(90, 90, 90); font-family: Times; font-size: small; width: 75%;"
+					align="center" frame="hsides">
+					<caption style="color:black; text-align: center;font-size: 17px;">
+						Comparison among different RS image change detection datasets
+					</caption>
+					<thead>
+						<tr style="border-bottom: solid 1px rgb(120, 120, 120);">
+							<th style="text-align: left;">Dataset</th>
+							<th style="text-align: center;">#Cat.</th>
+							<th style="text-align: center;">#Image pairs.</th>
+							<th style="text-align: center;">Resolution (m)</th>
+							<th style="text-align: center;">#Bands</th>
+							<th style="text-align: center;">Image size</th>
+							<th style="text-align: center;">Year</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr style="border-top: solid 1px white">
+							<td style="text-align: left;">
+								<a href="http://web.eee.sztaki.hu/remotesensing/airchange_benchmark.html" target="_blank">SZTAKI AirChange </a><br> 
+								<a href="https://computervisiononline.com/dataset/1105138664" target="_blank">AICD </a><br> 
+								<!-- <a href="https://ieeexplore.ieee.org/abstract/document/6553145" target="_blank">Taizhou Data </a><br>  -->
+								<a>Taizhou Data </a><br> 
+								<!-- <a href="https://ieeexplore.ieee.org/abstract/document/6553145" target="_blank">Kunshan Data </a><br>  -->
+								<a>Kunshan Data </a><br>
+								<!-- <a href="https://www.mdpi.com/2072-4292/9/3/284" target="_blank">Yangcheng</a> <br> -->
+								<a>Yangcheng</a><br>
+								<!-- <a href="https://ieeexplore.ieee.org/abstract/document/8518423" target="_blank">Urban-rural boundary of Whuhan</a> <br> -->
+								<a> Urban-rural boundary of Whuhan</a> <br>
+								<a href="https://wiki.citius.usc.es/hiperespectral:sae-cd" target="_blank">Hermiston City area, Oregon </a><br> 
+								<a href="https://rcdaudt.github.io/oscd" target="_blank">OSCD </a><br> 
+								<!-- <a href="https://ieeexplore.ieee.org/abstract/document/8519440" target="_blank">Quasi-urban areas </a><br>  -->
+								<a > Quasi-urban areas </a><br> 
+								<a href="https://study.rsgis.whu.edu.cn/pages/download/building_dataset.html" target="_blank">WHU Building-Change Detection </a><br> 
+								<a href="https://drive.google.com/file/d/1GX656JqqOyBi_Ef0w65kDGVto-nHrNs9/edit" target="_blank">Season-varing Dataset </a><br> 
+								<a href="https://github.com/gistairc/ABCDdataset" target="_blank">ABCD </a><br> 
+								<a href="https://ieee-dataport.org/open-access/hrscd-high-resolution-semantic-change-detection-dataset" target="_blank"> HRSCD </a> <br>
+								<a href="http://sigma.whu.edu.cn/newspage.php?q=2019_03_26_ENG" target="_blank"> MtS-WH </a> <br>
+								<a href="https://justchenhao.github.io/LEVIR" target="_blank"> LEVIR-CD </a> <br>
+								<a href="http://www.captain-whu.com/repository.html" target="_blank">SCDN </a>
+							</td>
+							<td style="text-align: center;">2 <br> 2 <br> 4 <br> 3 <br> 4 <br> 20 <br> 5 <br> 2 <br> 3
+								<br> 2 <br> 2 <br> 2 <br> 6 <br> 9 <br> 2 <br> 30 </td>
+							<td style="text-align: center;">13<br> 1,000 <br> 1 <br> 1 <br> 2 <br> 1 <br> 1 <br> 24 <br>
+								1 <br> 1 <br> 16,000 <br> 4,253 <br> 291 <br> 1 <br> 637 <br> 4,214 </td>
+							<td style="text-align: center;">1.5 <br> 0.5 <br> 30 <br> 30 <br> 30 <br> 4/30 <br> 30
+								<br> 10 <br> 0.5 <br> 0.2 <br> 0.03 to 0.1 <br> 0.4 <br> 0.5 <br> 1 <br> 0.5 <br> 0.5 to 3 </td>
+							<td style="text-align: center;">RGB <br> 115 bands <br> 6 bands <br> 6 bands <br> 242 bands
+								<br> 4/9 bands <br> 242 bands<br> 13 bands <br> 8 bands <br> RGB <br> RGB <br> RGB <br> RGB <br> NIR,RGB <br> RGB <br> RGB </td>
+							<td style="text-align: center;">952&times;640 <br> 800&times;600 <br> 400&times;400 <br> 800&times;800 <br>
+								400&times;145 <br> 960&times;960 <br> 390&times;200 <br> 600&times;600 <br>
+								1,200&times;1,200 <br> 32,207&times;15,354 <br> 256&times;256 <br> 160&times;160 <br> 10,000&times;10,000 <br> 7,200&times;6,000 <br> 1,024&times;1,024 <br> 512&times;512</td>
+							<td style="text-align: center;">2009 <br> 2011 <br> 2014 <br> 2014 <br> 2018 <br> 2018 <br>
+								2018 <br> 2018 <br> 2018 <br> 2018 <br> 2018 <br> 2018 <br> 2019 <br> 2019 <br> 2020 <br> 2020</td>
+						</tr>
+					</tbody>
+				</table>
+				<!-- <img src="files/CD.png" width="750" class="img-responsive center-block" /> -->
+			</div>
+		</div>
+
+		<br>
+		<div class="row">
+			<div class="span12">
+				<h3 id="DiRS" style="text-align:left; margin-bottom:10px; margin-top:20px; font-weight: bold">
+					3. DiRS: Principles to Build RS Image Benchmarks
+				</h3>
+				<p style="text-align:justify; font-size: 17px">
+					The primary point to construct a meaningful RS image dataset is that the dataset should be
+					created on the basis of the requirements of practical applications rather than the characteristics
+					of algorithms to be employed. Moreover, the annotation of RS image dataset is better to be conducted
+					by the application sides rather than the algorithm developers. Thus, the annotated dataset is
+					naturally application-oriented, which is more conducive to enhance the practicability of the
+					interpretation algorithm. With these points in mind, the <i>i.e.</i>, <i><strong>di</strong>versity</i>, 
+					<i><strong>r</strong>ichness</i>, and <i><strong>s</strong>calability</i> (called <strong>DiRS</strong>) 
+					could be considered as the basic principles when creating benchmark datasets for RS image interpretation. 
+					We believe that these principles are complementary to each other. That is, the improvement of dataset in 
+					one principle can simultaneously promote the dataset quality reflected in other principles.
+				</p>
+				<img src="files/DiRS.png" width="750px" class="img-responsive center-block" />
+			</div>
+		</div>
+
+		<br>
+		<div class="row">
+			<div class="span12">
+				<h3 id="Million-AID" style="text-align:left; margin-bottom:10px; margin-top:20px; font-weight: bold">
+					4. An Example: Million-AID
+				</h3>
+				<a href="files/Million-AID.png" target="_blank" title="Click to enlarge">
+				    <img src="files/Million-AID-Head.png" style="margin-right: 25px;margin-top: 5px; float: left;width: 172px;"/>
+			    </a>
+				<p style="text-align:justify; font-size: 17px;">
+					Limited by the scale of scene images and the number of scene categories, current datasets for scene
+					classification still need to be strenthened to meet the requirements of the real-world feature
+					representation and the scale for interpretation model development. It is desperately expected that
+					there is a larger image dataset for scene classification in the RS community. Based on the proposed
+					principles to build RS image benchmarks, we constructed the <i> Million Aerial Image Dataset for
+						Scene Classification</i> (named <i> Million-AID</i>).
+				</p>
+				<h4 style="text-align:left; margin-bottom:10px; margin-top:10px; font-weight: bold; font-style: italic">
+					- Category Network
+				</h4>
+				<img src="files/MAID_ClsNet.png" width="750px" class="img-responsive center-block" />
+				<h4 style="text-align:left; margin-bottom:10px; margin-top:10px; font-weight: bold; font-style: italic">
+					- Semantic Coordinates Collection
+				</h4>
+				<img src="files/CoordinatesCollection.png" width="750px" class="img-responsive center-block" />
+				<h4 style="text-align:left; margin-bottom:10px; margin-top:10px; font-weight: bold; font-style: italic">
+					- Scene Image Acquisition
+				</h4>
+				<img src="files/SceneAcquisition.png" width="750px" class="img-responsive center-block" />
+				<h4 id="Download" style="text-align:left; margin-bottom:10px; margin-top:10px; font-weight: bold; font-style: italic">
+					- Data Download
+				</h4>
+				<p style="text-align:justify; font-size: 17px">
+					Million-AID will be released for public accessibility.
+				</p>
+				<ul>
+					<li style="font-size:17px">
+						<a href="">Million-AID Download</a> (<i>Coming soon ...</i> )
+					</li>
+				</ul>
+				<a href="files/Million-AID.png" target="_blank" title="Click to enlarge"><img src="files/Million-AID-Display.png" width="750px" class="img-responsive center-block" /></a>
+			</div>
+		</div>
+
+		<br />
+
+		<div class="row">
+			<div class="span12">
+				<div class="section bibtex">
+
+					<h3 style="text-align:left; margin-bottom:10px; margin-top:20px; font-weight: bold">
+						Citation
+					</h3>
+					<p> If you want to make use of Million-AID, please cite our following paper:</p>
+					<pre>
+@article{Long_2020_DiRS,
+title={DiRS: On Creating Benchmark Datasets for Remote Sensing Image Interpretation},
+author={Yang Long and Gui-Song Xia and Shengyang Li and Wen Yang and Michael Ying Yang and Xiao Xiang Zhu and Liangpei Zhang and Deren Li},
+journal={arXiv preprint arXiv: 0000.00000},
+year={2020}
+}
+	                </pre>
+				</div>
+				<h3 style="text-align:left; margin-bottom:10px; margin-top:20px; font-weight: bold">
+					Contact
+				</h3>
+				<p>
+					If you have any problem, please contact:
+				<ul>
+					<li>Gui-Song Xia at <strong>guisong.xia@whu.edu.cn</strong></li>
+					<li>Yang Long at <strong>longyang@whu.edu.cn</strong></li>
+				</ul>
+				<br />
+				<br />
+				<br />
+			</div>
+		</div>
+<!-- 
+		<div class="row">
+			<div style="text-align:center; margin-top:0; margin-bottom: 20px;">
+				<embed id="map" src="http://rf.revolvermaps.com/f/f.swf" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" wmode="transparent" allowScriptAccess="always" allowNetworking="all" width="150" height="75" flashvars="m=0&amp;i=5dp1mfnunae&amp;r=10&amp;c=fffdc0" loop="true" autostart="False"></embed> 
+				<img class="img-responsive center-block" src="http://rf.revolvermaps.com/js/c/5dp1mfnunae.gif" width="1" height="1" alt="" value="True"/>
+				<a style="font-size: x-small;"> Copyight@2020, Captain</a>
+				<a href="http://www.revolvermaps.com/livestats/5dp1mfnunae/"></a>
+			</div>
+		</div> -->
+</body>
+
+</html>
