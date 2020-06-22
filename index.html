@@ -394,15 +394,21 @@
 					4. An Example: Million-AID
 				</h3>
 				<a href="files/Million-AID.jpg" target="_blank" title="Click to enlarge">
-				    <img src="files/Million-AID-Head.jpg" style="margin-right: 25px;margin-top: 5px; float: left;width: 172px;"/>
+				    <img src="files/Million-AID-Head.jpg" style="margin-right: 20px;margin-top: 5px; float: left;width: 420px;"/>
 			    </a>
 				<p style="text-align:justify; font-size: 17px;">
-					Limited by the scale of scene images and the number of scene categories, current datasets for scene
-					classification still need to be strenthened to meet the requirements of the real-world feature
-					representation and the scale for interpretation model development. It is desperately expected that
-					there is a larger image dataset for scene classification in the RS community. Based on the proposed
-					principles to build RS image benchmarks, we constructed the <i> Million Aerial Image Dataset for
-						Scene Classification</i> (named <i> Million-AID</i>).
+					Following the DiRS principles, we provide an example on building datasets for RS image classification, 
+					<i>i.e.</i>, Million-AID, a new large-scale benchmark dataset containing million instances for RS scene 
+					classification. Million-AID contains a wide range of semantic categories, <i>i.e.</i>, 51 scene categories 
+					organized by the hierarchical category network of a three-level tree: 51 leaf nodes fall into 28 parent 
+					nodes at the second level which are grouped into 8 nodes at the first level, representingthe 8 underlying 
+					scene categories of agriculture land, commercial land, industrial land, public service land, residential 
+					land,transportation land, unutilized land, and water area. The scene category network provides the dataset 
+					with excellent oganization of relationship among different scene categories and also the property of 
+					scalability. The number of images in each scene category ranges from about 2,000 to 45,000, endowing the 
+					dataset with the property of long tail distribution. Besides, Million-AID has superiorities over the 
+					existing scene classification datasets owing to its high spatial resolution, large scale, and global 
+					distribution.  
 				</p>
 				<h4 style="text-align:left; margin-bottom:10px; margin-top:10px; font-weight: bold; font-style: italic">
 					- Category Network
